@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "504910562501",
+    "project_id": "appomarttaskertest",
+    "storage_bucket": "appomarttaskertest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504910562501:android:0544d34dd90a0eb7319cac",
+        "android_client_info": {
+          "package_name": "com.test.appomarttaskertest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-nxKPyzxlYPZWYIVe7KbSTW1IGOAHPmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Appomart tasker test</string>
+<!--    auth screen-->
+    <string name="label_greetings">Приветствую! Авторизуйтесь.</string>
+    <string name="hint_login">Логин</string>
+    <string name="hint_password">Пароль</string>
+    <string name="action_log_in">Войти</string>
+<!--    orders screen-->
+    <string name="action_log_out">Выйти из аккаунта</string>
+    <string name="label_list_of_orders">Список заказов</string>
+    <string name="label_order_id">ID заказа: %d</string>
+    <string name="label_order_name">Название: %s</string>
+    <string name="label_order_description">Описание: %s</string>
+    <string name="label_order_status">Статус: %s</string>
+    <string name="label_order_price">Стоимость(₽): %s</string>
+    <string name="label_order_commentary">Комментарий: %s</string>
+    <string name="action_change">Изменить</string>
+    <string name="label_price_not_assigned">Не указана</string>
+    <string name="label_commentary_not_assigned">Не указан</string>
+<!--    order status-->
+    <string name="label_new">Новый</string>
+    <string name="label_in_progress">Выполняется</string>
+    <string name="label_canceled">Отменен</string>
+    <string name="label_finished">Выполнен</string>
+    <string name="label_closed">Завершен</string>
+<!--    dialog status-->
+    <string name="choose_new_status">Выберите новый статус:</string>
+    <string name="button_change">Изменить</string>
+    <string name="button_cancel">Отмена</string>
+</resources>

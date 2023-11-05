@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="colorOnPrimary" format="color"/>
+    <attr name="colorPrimary" format="color"/>
+    <attr name="colorPrimaryContainer" format="color"/>
+    <attr name="colorAccent" format="color" />
+    <attr name="colorSecondary" format="color" />
+    <attr name="colorControlActivated" format="color" />
+
+</resources>

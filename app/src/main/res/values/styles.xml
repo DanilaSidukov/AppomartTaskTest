@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RobotoMedium">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+    </style>
+
+    <style name="RobotoRegular">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+    </style>
+
+    <style name="ButtonStyle">
+        <item name="android:backgroundTint">?colorPrimaryContainer</item>
+        <item name="android:textColor">?colorOnPrimaryContainer</item>
+    </style>
+
+</resources>
