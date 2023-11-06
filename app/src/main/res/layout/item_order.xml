@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
-    android:backgroundTint="?colorSecondary"
+    android:backgroundTint="?colorPrimaryContainer"
     android:layout_marginBottom="16dp">
 
     <LinearLayout
@@ -58,6 +59,17 @@
                 style="@style/RobotoMedium"
                 android:textSize="16sp"
                 android:layout_marginBottom="10dp"
+                android:textColor="?colorOnPrimaryContainer"/>
+
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/label_new"
+                style="@style/RobotoMedium"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="5dp"
                 android:textColor="?colorOnPrimaryContainer"/>
 
             <TextView

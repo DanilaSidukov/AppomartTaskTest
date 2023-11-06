@@ -11,12 +11,15 @@
     <string name="label_order_id">ID заказа: %d</string>
     <string name="label_order_name">Название: %s</string>
     <string name="label_order_description">Описание: %s</string>
-    <string name="label_order_status">Статус: %s</string>
+    <string name="label_order_status">Статус: </string>
     <string name="label_order_price">Стоимость(₽): %s</string>
     <string name="label_order_commentary">Комментарий: %s</string>
     <string name="action_change">Изменить</string>
     <string name="label_price_not_assigned">Не указана</string>
     <string name="label_commentary_not_assigned">Не указан</string>
+    <string name="error_cannot_change_status">Нельзя изменить статус у выбранного заказа!</string>
+    <string name="error_changing_status">Не удалось изменить статус</string>
+    <string name="success_status_changed">Статус успешно обновлен</string>
 <!--    order status-->
     <string name="label_new">Новый</string>
     <string name="label_in_progress">Выполняется</string>

@@ -6,14 +6,18 @@
         <item name="android:textColor">?colorOnPrimary</item>
     </style>
 
+    <style name="RobotoMedium.Order">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <style name="RobotoRegular">
         <item name="android:fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">?colorOnPrimary</item>
     </style>
 
     <style name="ButtonStyle">
-        <item name="android:backgroundTint">?colorPrimaryContainer</item>
-        <item name="android:textColor">?colorOnPrimaryContainer</item>
+        <item name="android:backgroundTint">?colorOnPrimaryContainer</item>
+        <item name="android:textColor">?colorAccent</item>
     </style>
 
 </resources>

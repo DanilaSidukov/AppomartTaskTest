@@ -9,13 +9,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.test.appomarttaskertest.R
-import com.test.appomarttaskertest.databinding.AuthFragmentBinding
+import com.test.appomarttaskertest.databinding.FragmentAuthBinding
 import com.test.appomarttaskertest.ui.orders.OrdersFragment
 import com.test.appomarttaskertest.ui.showText
 
 class AuthFragment: Fragment() {
 
-    private lateinit var binding: AuthFragmentBinding
+    private lateinit var binding: FragmentAuthBinding
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
@@ -23,7 +23,7 @@ class AuthFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = AuthFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentAuthBinding.inflate(inflater, container, false)
         return binding.root
     }
 

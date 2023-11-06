@@ -4,7 +4,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.test.appomarttaskertest.domain.Order
+import com.test.appomarttaskertest.domain.OrderStatus
 import com.test.appomarttaskertest.domain.source.IOrdersSource
+import com.test.appomarttaskertest.domain.toInt
 import com.test.appomarttaskertest.domain.toOrderStatus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -36,6 +38,24 @@ class OrdersSource @Inject constructor(
             }
         }
     }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override suspend fun updateOrder(
+        id: Int,
+        status: OrderStatus
+    ) : Boolean = suspendCancellableCoroutine { continuation ->
+        val documentRef = firestore.collection(CAKES_COLLECTION_KEY).document(id.toString())
+        documentRef
+            .update(ORDER_STATUS_KEY, status.toInt())
+            .addOnSuccessListener {
+                continuation.resume(true, null)
+            }
+            .addOnFailureListener {
+                continuation.resume(false, null)
+            }
+
+    }
+
 
     private fun QueryDocumentSnapshot.toOrder() = Order(
         id = data[ORDER_ID_KEY].toString().toInt(),

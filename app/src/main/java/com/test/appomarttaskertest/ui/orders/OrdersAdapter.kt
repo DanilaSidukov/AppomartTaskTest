@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.test.appomarttaskertest.R
-import com.test.appomarttaskertest.databinding.OrderItemBinding
+import com.test.appomarttaskertest.databinding.ItemOrderBinding
 import com.test.appomarttaskertest.domain.Order
+import com.test.appomarttaskertest.domain.OrderStatus
 import com.test.appomarttaskertest.ui.asString
 
 class OrdersAdapter(
@@ -15,17 +16,17 @@ class OrdersAdapter(
 ): RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
-        val binding : OrderItemBinding = OrderItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding : ItemOrderBinding = ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return OrdersViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
         val order = orderList[position]
         holder.bindItem(order)
-        holder.openStatusDialog(listener, order.status.asString(holder.itemView.context))
+        holder.openStatusDialog(listener, order)
     }
 
-    class OrdersViewHolder(private val binding: OrderItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class OrdersViewHolder(private val binding: ItemOrderBinding): RecyclerView.ViewHolder(binding.root) {
 
         private val priceNotAssigned =
             binding.root.context.getString(R.string.label_price_not_assigned)
@@ -42,16 +43,18 @@ class OrdersAdapter(
                     R.string.label_order_price,
                     order.price ?: priceNotAssigned
                 )
-                textOrderStatus.text = itemView.context.getString(R.string.label_order_status, status)
+                orderStatus.text = status
                 textOrderCommentary.text = itemView.context.getString(
                     R.string.label_order_commentary,
                     order.commentary ?: commentaryNotAssigned
                 )
             }
         }
-        fun openStatusDialog(listener: OnChangeOrderStatusListener, orderStatus: String){
-            binding.changeOrderStatus.setOnClickListener {
-                listener.onChangeOrderStatusListener(orderStatus)
+        fun openStatusDialog(listener: OnChangeOrderStatusListener, order: Order) {
+            binding.changeOrderStatus.post {
+                binding.changeOrderStatus.setOnClickListener {
+                    listener.onChangeOrderStatusListener(order.id, order.status)
+                }
             }
         }
     }
@@ -68,5 +71,5 @@ class OrdersAdapter(
 }
 
 interface OnChangeOrderStatusListener{
-    fun onChangeOrderStatusListener(orderStatus: String)
+    fun onChangeOrderStatusListener(orderId: Int, orderStatus: OrderStatus)
 }
