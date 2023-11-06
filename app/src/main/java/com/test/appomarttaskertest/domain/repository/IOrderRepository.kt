@@ -9,7 +9,9 @@ interface IOrderRepository {
 
     suspend fun updateOrderStatus(
         id: Int,
-        status: OrderStatus
+        status: OrderStatus,
+        price: Int?,
+        commentary: String?
     ) : Boolean
 
 }

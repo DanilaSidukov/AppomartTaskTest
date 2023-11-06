@@ -1,110 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="6dp"
+    android:layout_marginBottom="16dp"
     android:backgroundTint="?colorPrimaryContainer"
-    android:layout_marginBottom="16dp">
+    app:cardCornerRadius="6dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/text_order_id"
+            style="@style/RobotoMedium.TextStyleItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_order_id"
-            style="@style/RobotoMedium"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"
-            android:textColor="?colorOnPrimaryContainer"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_order_name"
+            style="@style/RobotoMedium.TextStyleItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_order_name"
-            style="@style/RobotoMedium"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"
-            android:textColor="?colorOnPrimaryContainer"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_order_id" />
 
         <TextView
             android:id="@+id/text_order_description"
+            style="@style/RobotoMedium.TextStyleItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/label_order_description"
-            style="@style/RobotoMedium"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"
-            android:textColor="?colorOnPrimaryContainer"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_order_name" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_order_status"
+            style="@style/RobotoMedium.TextStyleItem"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:paddingEnd="6dp"
+            android:text="@string/label_order_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_order_description" />
 
-            <TextView
-                android:id="@+id/text_order_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_order_status"
-                style="@style/RobotoMedium"
-                android:textSize="16sp"
-                android:layout_marginBottom="10dp"
-                android:textColor="?colorOnPrimaryContainer"/>
-
-            <TextView
-                android:id="@+id/order_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="@string/label_new"
-                style="@style/RobotoMedium"
-                android:textSize="16sp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="5dp"
-                android:textColor="?colorOnPrimaryContainer"/>
-
-            <TextView
-                android:id="@+id/change_order_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="@string/action_change"
-                style="@style/RobotoMedium"
-                android:textSize="15sp"
-                android:layout_marginBottom="10dp"
-                android:textColor="?colorControlActivated"/>
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/order_status"
+            style="@style/RobotoMedium.TextStyleItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            app:layout_constraintStart_toEndOf="@id/text_order_status"
+            app:layout_constraintTop_toTopOf="@id/text_order_status"
+            tools:text="@string/label_new" />
 
         <TextView
             android:id="@+id/text_order_price"
-            android:layout_width="match_parent"
+            style="@style/RobotoMedium.TextStyleItem"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingEnd="6dp"
             android:text="@string/label_order_price"
-            style="@style/RobotoMedium"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"
-            android:textColor="?colorOnPrimaryContainer"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_order_status" />
+        `
+
+        <TextView
+            android:id="@+id/order_price"
+            style="@style/RobotoMedium.TextStyleItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="0dp"
+            app:layout_constraintStart_toEndOf="@id/text_order_price"
+            app:layout_constraintTop_toTopOf="@id/text_order_price"
+            tools:text="500" />
 
         <TextView
             android:id="@+id/text_order_commentary"
-            android:layout_width="match_parent"
+            style="@style/RobotoMedium.TextStyleItem"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_order_commentary"
-            style="@style/RobotoMedium"
-            android:textSize="16sp"
-            android:textColor="?colorOnPrimaryContainer"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_order_price" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/change_order_status"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/action_change"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/show_order_on_maps"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="15dp"
+            android:contentDescription="@string/action_change"
+            android:src="@drawable/ic_location"
+            app:layout_constraintEnd_toStartOf="@+id/change_order_status"
+            app:layout_constraintTop_toTopOf="@+id/change_order_status" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>

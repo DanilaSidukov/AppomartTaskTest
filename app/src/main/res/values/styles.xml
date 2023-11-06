@@ -16,8 +16,27 @@
     </style>
 
     <style name="ButtonStyle">
-        <item name="android:backgroundTint">?colorOnPrimaryContainer</item>
-        <item name="android:textColor">?colorAccent</item>
+        <item name="android:backgroundTint">?colorSecondary</item>
+        <item name="android:textColor">?colorOnPrimaryContainer</item>
+    </style>
+
+    <style name="RobotoMedium.TextStyleItem">
+        <item name="android:textColor">?colorOnPrimaryContainer</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <style name="RobotoRegular.EditTextStyle">
+        <item name="android:textColor">?colorOnPrimaryContainer</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:layout_marginStart">36dp</item>
+        <item name="android:layout_marginEnd">36dp</item>
+        <item name="android:layout_marginTop">20dp</item>
     </style>
 
 </resources>

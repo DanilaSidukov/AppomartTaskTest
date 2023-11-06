@@ -18,7 +18,7 @@ data class OrdersUiState(
     val canEditStatus: Boolean? = null,
     val currentOrderId: Int = 0,
     val isUpdateSuccessful: Boolean? = null,
-    val showLoader: Boolean = false
+    val showLoader: Boolean = true
 )
 
 @HiltViewModel
@@ -38,7 +38,8 @@ class OrdersViewModel @Inject constructor(
             val orders = ordersRepository.getOrders()
             _uiState.emit(
                 _uiState.value.copy(
-                    orderList = orders
+                    orderList = orders,
+                    showLoader = false
                 )
             )
         }
@@ -63,7 +64,7 @@ class OrdersViewModel @Inject constructor(
         }
     }
 
-    fun updateStatus(id: Int, status: OrderStatus) {
+    fun updateStatus(id: Int, status: OrderStatus, price: Int?, commentary: String?) {
         viewModelScope.launch {
             _uiState.emit(
                 _uiState.value.copy(
@@ -71,7 +72,7 @@ class OrdersViewModel @Inject constructor(
                     canEditStatus = null
                 )
             )
-            val isSuccessful = ordersRepository.updateOrderStatus(id, status)
+            val isSuccessful = ordersRepository.updateOrderStatus(id, status, price, commentary)
             val updatedList = ordersRepository.getOrders()
             _uiState.emit(
                 _uiState.value.copy(

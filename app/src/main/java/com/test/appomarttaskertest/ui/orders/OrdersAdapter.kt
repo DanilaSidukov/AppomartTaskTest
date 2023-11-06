@@ -39,10 +39,7 @@ class OrdersAdapter(
                 textOrderId.text = itemView.context.getString(R.string.label_order_id, order.id)
                 textOrderName.text = itemView.context.getString(R.string.label_order_name, order.name)
                 textOrderDescription.text = itemView.context.getString(R.string.label_order_description, order.description)
-                textOrderPrice.text = itemView.context.getString(
-                    R.string.label_order_price,
-                    order.price ?: priceNotAssigned
-                )
+                orderPrice.text = order.price?.toString() ?: priceNotAssigned
                 orderStatus.text = status
                 textOrderCommentary.text = itemView.context.getString(
                     R.string.label_order_commentary,
@@ -57,6 +54,7 @@ class OrdersAdapter(
                 }
             }
         }
+
     }
 
     fun updateList(newList: List<Order>){

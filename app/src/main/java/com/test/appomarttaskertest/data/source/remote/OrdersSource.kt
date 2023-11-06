@@ -10,6 +10,8 @@ import com.test.appomarttaskertest.domain.toInt
 import com.test.appomarttaskertest.domain.toOrderStatus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
+import java.nio.channels.AsynchronousByteChannel
+import java.util.Objects
 import javax.inject.Inject
 
 class OrdersSource @Inject constructor(
@@ -42,11 +44,19 @@ class OrdersSource @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun updateOrder(
         id: Int,
-        status: OrderStatus
+        status: OrderStatus,
+        price: Int?,
+        commentary: String?
     ) : Boolean = suspendCancellableCoroutine { continuation ->
         val documentRef = firestore.collection(CAKES_COLLECTION_KEY).document(id.toString())
+
+        val updatedValues = hashMapOf<String, Any>()
+        updatedValues[ORDER_STATUS_KEY] = status.toInt()
+        if (price != null) updatedValues[ORDER_PRICE_KEY] = price
+        if (!commentary.isNullOrEmpty()) updatedValues[ORDER_COMMENTARY_KEY] = commentary
+
         documentRef
-            .update(ORDER_STATUS_KEY, status.toInt())
+            .update(updatedValues)
             .addOnSuccessListener {
                 continuation.resume(true, null)
             }
@@ -55,7 +65,6 @@ class OrdersSource @Inject constructor(
             }
 
     }
-
 
     private fun QueryDocumentSnapshot.toOrder() = Order(
         id = data[ORDER_ID_KEY].toString().toInt(),

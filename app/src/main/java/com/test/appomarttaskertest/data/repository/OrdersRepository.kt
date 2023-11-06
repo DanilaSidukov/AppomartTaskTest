@@ -12,7 +12,9 @@ class OrdersRepository @Inject constructor(
     override suspend fun getOrders() = ordersSource.getOrders()
     override suspend fun updateOrderStatus(
         id: Int,
-        status: OrderStatus
-    ) = ordersSource.updateOrder(id, status)
+        status: OrderStatus,
+        price: Int?,
+        commentary: String?
+    ) = ordersSource.updateOrder(id, status, price, commentary)
 
 }

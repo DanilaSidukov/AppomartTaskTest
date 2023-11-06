@@ -56,6 +56,7 @@ class OrdersFragment: Fragment(), OnChangeOrderStatusListener, OnStatusChangedLi
     private fun collectState() {
         viewLifecycleOwner.lifecycleScope.launch {
             ordersViewModel.uiState.collect { uiState ->
+                binding.progressBar.isVisible = uiState.showLoader
                 val orderList = uiState.orderList
                 if (orderList.isEmpty()) return@collect
                 ordersAdapter.updateList(orderList)
@@ -77,9 +78,6 @@ class OrdersFragment: Fragment(), OnChangeOrderStatusListener, OnStatusChangedLi
                         )
                     )
                 }
-
-                binding.progressBar.isVisible = uiState.showLoader
-
             }
         }
     }
@@ -108,8 +106,18 @@ class OrdersFragment: Fragment(), OnChangeOrderStatusListener, OnStatusChangedLi
         dialogFragment.show(childFragmentManager, null)
     }
 
-    override fun onItemSelected(id: Int, status: OrderStatus) {
-        ordersViewModel.updateStatus(id, status)
+    override fun onItemSelected(
+        id: Int,
+        status: OrderStatus,
+        price: Int?,
+        commentary: String?
+    ) {
+        ordersViewModel.updateStatus(
+            id,
+            status,
+            price,
+            commentary
+        )
     }
 
 }
