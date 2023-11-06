@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "504910562501",
-    "project_id": "appomarttaskertest",
-    "storage_bucket": "appomarttaskertest.appspot.com"
+    "project_number": "139750794313",
+    "project_id": "sweet-delivery-28acb",
+    "storage_bucket": "sweet-delivery-28acb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:504910562501:android:0544d34dd90a0eb7319cac",
+        "mobilesdk_app_id": "1:139750794313:android:a7cefeec59d6ef4bcc0b98",
         "android_client_info": {
-          "package_name": "com.test.appomarttaskertest"
+          "package_name": "dev.appomart.sweetdelivery"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA-nxKPyzxlYPZWYIVe7KbSTW1IGOAHPmA"
+          "current_key": "AIzaSyDq_cIqatH0F1p4RqS3ZVBHW0lDCJ2bjRs"
         }
       ],
       "services": {

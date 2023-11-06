@@ -100,16 +100,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/show_order_on_maps"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="15dp"
-            android:contentDescription="@string/action_change"
-            android:src="@drawable/ic_location"
-            app:layout_constraintEnd_toStartOf="@+id/change_order_status"
-            app:layout_constraintTop_toTopOf="@+id/change_order_status" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

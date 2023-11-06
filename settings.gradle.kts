@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Appomart tasker test"
+rootProject.name = "sweetdelivery"
 include(":app")

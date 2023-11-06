@@ -9,17 +9,18 @@ plugins {
 }
 
 android {
-    namespace = "com.test.appomarttaskertest"
+    namespace = "dev.appomart.sweetdelivery"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.test.appomarttaskertest"
+        applicationId = "dev.appomart.sweetdelivery"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -74,11 +75,10 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
-    // Firebase BoM, Firebase Authentication library and FirebaseDatastore
+    // Firebase BoM, Firebase Authentication library, FirebaseDatastore
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     // Maps SDK
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
-
 }
