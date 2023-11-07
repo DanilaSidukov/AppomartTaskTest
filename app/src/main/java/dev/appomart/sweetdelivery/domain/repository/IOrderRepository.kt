@@ -5,13 +5,13 @@ import dev.appomart.sweetdelivery.domain.OrderStatus
 
 interface IOrderRepository {
 
-    suspend fun getOrders() : List<Order>
+    suspend fun getOrders(): List<Order>
 
     suspend fun updateOrderStatus(
         id: Int,
         status: OrderStatus,
         price: Int?,
         commentary: String?
-    ) : Boolean
+    ): Boolean
 
 }

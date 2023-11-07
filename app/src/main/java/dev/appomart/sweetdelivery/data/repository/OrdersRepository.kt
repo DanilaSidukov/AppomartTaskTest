@@ -2,7 +2,7 @@ package dev.appomart.sweetdelivery.data.repository
 
 import dev.appomart.sweetdelivery.domain.OrderStatus
 import dev.appomart.sweetdelivery.domain.repository.IOrderRepository
-import dev.appomart.sweetdelivery.domain.source.IOrdersSource
+import dev.appomart.sweetdelivery.domain.source.remote.IOrdersSource
 import javax.inject.Inject
 
 class OrdersRepository @Inject constructor(

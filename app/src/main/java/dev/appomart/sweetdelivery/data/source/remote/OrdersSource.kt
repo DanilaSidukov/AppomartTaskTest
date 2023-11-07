@@ -3,10 +3,10 @@ package dev.appomart.sweetdelivery.data.source.remote
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import dev.appomart.sweetdelivery.data.source.local.Settings.CAKES_COLLECTION_KEY
+import dev.appomart.sweetdelivery.CAKES_COLLECTION_KEY
 import dev.appomart.sweetdelivery.domain.Order
 import dev.appomart.sweetdelivery.domain.OrderStatus
-import dev.appomart.sweetdelivery.domain.source.IOrdersSource
+import dev.appomart.sweetdelivery.domain.source.remote.IOrdersSource
 import dev.appomart.sweetdelivery.domain.toInt
 import dev.appomart.sweetdelivery.domain.toOrderStatus
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -46,7 +46,7 @@ class OrdersSource @Inject constructor(
         status: OrderStatus,
         price: Int?,
         commentary: String?
-    ) : Boolean = suspendCancellableCoroutine { continuation ->
+    ): Boolean = suspendCancellableCoroutine { continuation ->
 
         val documentRef = firestore.collection(CAKES_COLLECTION_KEY).document(id.toString())
 
@@ -77,7 +77,7 @@ class OrdersSource @Inject constructor(
         latitude = (data[ORDER_COORDINATES] as GeoPoint).latitude
     )
 
-    private fun Int.getPriceOfOrder() : Int? = if (this == -1) null else this
+    private fun Int.getPriceOfOrder(): Int? = if (this == -1) null else this
 
     private fun String.getCommentary(): String? =
         if (this == NULL_STRING || this.isBlank()) null else this

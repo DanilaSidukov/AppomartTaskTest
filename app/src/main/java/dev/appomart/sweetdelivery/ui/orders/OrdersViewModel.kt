@@ -2,11 +2,10 @@ package dev.appomart.sweetdelivery.ui.orders
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.GeoPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.appomart.sweetdelivery.domain.Order
 import dev.appomart.sweetdelivery.domain.OrderStatus
 import dev.appomart.sweetdelivery.domain.repository.IOrderRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -24,10 +23,21 @@ data class OrdersUiState(
 @HiltViewModel
 class OrdersViewModel @Inject constructor(
     private val ordersRepository: IOrderRepository
-): ViewModel() {
+) : ViewModel() {
 
     private var _uiState = MutableStateFlow(OrdersUiState())
     val uiState = _uiState.asStateFlow()
+
+    private companion object {
+        private val updateOrderMap = mapOf(
+            OrderStatus.Canceled to emptyList(),
+            OrderStatus.Closed to emptyList(),
+            OrderStatus.Finished to listOf(OrderStatus.Closed),
+            OrderStatus.InProgress to listOf(OrderStatus.Finished, OrderStatus.Canceled),
+            OrderStatus.New to listOf(OrderStatus.InProgress, OrderStatus.Canceled)
+        )
+    }
+
 
     init {
         getOrderList()
@@ -46,12 +56,7 @@ class OrdersViewModel @Inject constructor(
     }
 
     fun requestStatusList(id: Int, currentStatus: OrderStatus) {
-        val statusList = when(currentStatus) {
-            OrderStatus.Canceled, OrderStatus.Closed -> emptyList()
-            OrderStatus.Finished -> listOf(OrderStatus.Closed)
-            OrderStatus.InProgress -> listOf(OrderStatus.Finished, OrderStatus.Canceled)
-            OrderStatus.New -> listOf(OrderStatus.InProgress, OrderStatus.Canceled)
-        }
+        val statusList = updateOrderMap[currentStatus] ?: return
         viewModelScope.launch {
             _uiState.emit(
                 _uiState.value.copy(

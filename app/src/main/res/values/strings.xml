@@ -5,6 +5,9 @@
     <string name="hint_login">Логин</string>
     <string name="hint_password">Пароль</string>
     <string name="action_log_in">Войти</string>
+    <string name="authentication_failed">Авторизация не удалась</string>
+    <string name="error_authentication">Ошибка: </string>
+    <string name="please_fill_all_fields">Пожалуйста, заполните поля перед авторизацией</string>
 <!--    orders screen-->
     <string name="action_log_out">Выйти из аккаунта</string>
     <string name="label_list_of_orders">Список заказов</string>

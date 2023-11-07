@@ -6,10 +6,10 @@ import android.app.Dialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
+import dev.appomart.sweetdelivery.databinding.DialogChangeStatusBinding
 import dev.appomart.sweetdelivery.domain.OrderStatus
 import dev.appomart.sweetdelivery.ui.asString
 import dev.appomart.sweetdelivery.ui.showText
-import dev.appomart.sweetdelivery.databinding.DialogChangeStatusBinding
 import dev.appomart.sweetdelivery.R as Res
 
 class ChangeStatusDialogFragment(
@@ -45,7 +45,7 @@ class ChangeStatusDialogFragment(
         }
 
         buttonChange.setOnClickListener {
-            if (isEditApplicable(statusList[statusSpinner.selectedItemPosition])){
+            if (isEditApplicable(statusList[statusSpinner.selectedItemPosition])) {
                 listener.onItemSelected(
                     currentOrderId,
                     statusList[statusSpinner.selectedItemPosition],
@@ -61,16 +61,15 @@ class ChangeStatusDialogFragment(
         }
     }
 
-    private fun isEditApplicable(status: OrderStatus): Boolean{
-        with(bindingDialog){
-            if (status == OrderStatus.Closed){
+    private fun isEditApplicable(status: OrderStatus): Boolean {
+        with(bindingDialog) {
+            if (status == OrderStatus.Closed) {
                 var isPriceSet = false
                 var isCommentarySet = false
                 editPrice.text?.toString()?.toIntOrNull()?.let {
                     isPriceSet = it.toString().toInt() > 0
                 }
                 editCommentary.text.toString().let {
-                    println("text = $it")
                     isCommentarySet = it.isNotBlank() && it.isNotEmpty()
                 }
                 return isPriceSet && isCommentarySet

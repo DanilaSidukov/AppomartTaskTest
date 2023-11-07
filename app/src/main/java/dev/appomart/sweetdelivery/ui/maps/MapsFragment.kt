@@ -13,11 +13,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.firebase.firestore.GeoPoint
 import dagger.hilt.android.AndroidEntryPoint
 import dev.appomart.sweetdelivery.R
 import dev.appomart.sweetdelivery.databinding.FragmentMapsBinding
-import dev.appomart.sweetdelivery.ui.orders.OrdersViewModel
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -26,7 +24,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentMapsBinding
     private val mapsViewModel: MapsViewModel by viewModels()
 
-    private lateinit var mMap: GoogleMap
+    private lateinit var googleMap: GoogleMap
+
+    private companion object {
+        const val ZOOM_VALUE = 12.0f
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,32 +42,31 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         viewLifecycleOwner.lifecycleScope.launch {
             mapsViewModel.coordinatesList.collect { position ->
-                if (position.isEmpty()) return@collect
+                if (position.isEmpty() || !this@MapsFragment::googleMap.isInitialized) return@collect
                 position.forEach { info ->
                     val coordinates = LatLng(info.latitude, info.longitude)
-                    println("coord = $coordinates")
-                    mMap.addMarker(
+                    googleMap.addMarker(
                         MarkerOptions()
                             .position(coordinates)
                             .title(info.name)
                     )
                 }
                 val firstPosition = LatLng(position[0].latitude, position[0].longitude)
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(10.0f))
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(firstPosition))
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(firstPosition))
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(ZOOM_VALUE))
             }
         }
 
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        this.googleMap = googleMap
+
     }
 }

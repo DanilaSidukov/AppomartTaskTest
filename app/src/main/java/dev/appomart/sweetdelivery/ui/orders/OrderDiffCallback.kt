@@ -3,7 +3,6 @@ package dev.appomart.sweetdelivery.ui.orders
 import androidx.recyclerview.widget.DiffUtil
 import dev.appomart.sweetdelivery.domain.Order
 
-
 class OrderDiffCallback(
     private val oldOrderList: List<Order>,
     private val newOrderList: List<Order>

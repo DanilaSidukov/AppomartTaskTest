@@ -14,8 +14,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import dev.appomart.sweetdelivery.ORDERS_SCREEN
 import dev.appomart.sweetdelivery.R
-import dev.appomart.sweetdelivery.data.source.local.Settings
 import dev.appomart.sweetdelivery.databinding.FragmentOrdersBinding
 import dev.appomart.sweetdelivery.domain.OrderStatus
 import dev.appomart.sweetdelivery.ui.auth.AuthFragment
@@ -24,7 +24,7 @@ import dev.appomart.sweetdelivery.ui.showText
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class OrdersFragment: Fragment(), OnChangeOrderStatusListener, OnStatusChangedListener {
+class OrdersFragment : Fragment(), OnChangeOrderStatusListener, OnStatusChangedListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
@@ -85,7 +85,7 @@ class OrdersFragment: Fragment(), OnChangeOrderStatusListener, OnStatusChangedLi
         }
     }
 
-    private fun bind() = with(binding){
+    private fun bind() = with(binding) {
         rvOrders.adapter = ordersAdapter
         iconLogOut.setOnClickListener {
             auth.signOut()
@@ -126,10 +126,10 @@ class OrdersFragment: Fragment(), OnChangeOrderStatusListener, OnStatusChangedLi
         )
     }
 
-    private fun openGoogleMaps(){
+    private fun openGoogleMaps() {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, MapsFragment())
-            .addToBackStack( Settings.ORDERS_SCREEN)
+            .addToBackStack(ORDERS_SCREEN)
             .commit()
     }
 

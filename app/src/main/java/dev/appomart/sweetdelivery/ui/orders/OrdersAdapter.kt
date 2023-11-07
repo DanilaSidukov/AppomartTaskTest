@@ -4,19 +4,20 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import dev.appomart.sweetdelivery.R
+import dev.appomart.sweetdelivery.databinding.ItemOrderBinding
 import dev.appomart.sweetdelivery.domain.Order
 import dev.appomart.sweetdelivery.domain.OrderStatus
 import dev.appomart.sweetdelivery.ui.asString
-import dev.appomart.sweetdelivery.R
-import dev.appomart.sweetdelivery.databinding.ItemOrderBinding
 
 class OrdersAdapter(
     private var orderList: List<Order>,
     private val listener: OnChangeOrderStatusListener,
-): RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
+) : RecyclerView.Adapter<OrdersAdapter.OrdersViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
-        val binding : ItemOrderBinding = ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemOrderBinding =
+            ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return OrdersViewHolder(binding)
     }
 
@@ -26,7 +27,8 @@ class OrdersAdapter(
         holder.openStatusDialog(listener, order)
     }
 
-    class OrdersViewHolder(private val binding: ItemOrderBinding): RecyclerView.ViewHolder(binding.root) {
+    class OrdersViewHolder(private val binding: ItemOrderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         private val priceNotAssigned =
             binding.root.context.getString(R.string.label_price_not_assigned)
@@ -35,10 +37,12 @@ class OrdersAdapter(
 
         fun bindItem(order: Order) {
             val status = order.status.asString(itemView.context)
-            with(binding){
+            with(binding) {
                 textOrderId.text = itemView.context.getString(R.string.label_order_id, order.id)
-                textOrderName.text = itemView.context.getString(R.string.label_order_name, order.name)
-                textOrderDescription.text = itemView.context.getString(R.string.label_order_description, order.description)
+                textOrderName.text =
+                    itemView.context.getString(R.string.label_order_name, order.name)
+                textOrderDescription.text =
+                    itemView.context.getString(R.string.label_order_description, order.description)
                 orderPrice.text = order.price?.toString() ?: priceNotAssigned
                 orderStatus.text = status
                 textOrderCommentary.text = itemView.context.getString(
@@ -48,6 +52,7 @@ class OrdersAdapter(
 
             }
         }
+
         fun openStatusDialog(listener: OnChangeOrderStatusListener, order: Order) {
             binding.changeOrderStatus.post {
                 binding.changeOrderStatus.setOnClickListener {
@@ -58,7 +63,7 @@ class OrdersAdapter(
 
     }
 
-    fun updateList(newList: List<Order>){
+    fun updateList(newList: List<Order>) {
         val orderDiffCallback = OrderDiffCallback(orderList, newList)
         val diffResult = DiffUtil.calculateDiff(orderDiffCallback)
         orderList = newList
@@ -69,6 +74,6 @@ class OrdersAdapter(
 
 }
 
-interface OnChangeOrderStatusListener{
+interface OnChangeOrderStatusListener {
     fun onChangeOrderStatusListener(orderId: Int, orderStatus: OrderStatus)
 }

@@ -6,4 +6,10 @@
     <color name="ivory">#958DA5</color>
     <color name="pale_pink">#B58392</color>
     <color name="light_grey">#939094</color>
+    
+    <color name="light_purple">#D0BCFF</color>
+    <color name="light_periwinkle">#CCC2DC</color>
+    <color name="cameo_pink">#EFB8C8</color>
+    <color name="spanish_grey">#938F99</color>
+    
 </resources>

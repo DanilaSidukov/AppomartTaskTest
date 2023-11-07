@@ -1,4 +1,5 @@
 package dev.appomart.sweetdelivery.domain
+
 data class Order(
     val id: Int,
     val name: String,

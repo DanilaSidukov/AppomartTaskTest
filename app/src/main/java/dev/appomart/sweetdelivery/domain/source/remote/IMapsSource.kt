@@ -1,4 +1,4 @@
-package dev.appomart.sweetdelivery.domain.source
+package dev.appomart.sweetdelivery.domain.source.remote
 
 import dev.appomart.sweetdelivery.ui.maps.CoordinatesInfo
 

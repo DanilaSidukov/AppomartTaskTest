@@ -1,4 +1,4 @@
-package dev.appomart.sweetdelivery.domain.source
+package dev.appomart.sweetdelivery.domain.source.remote
 
 import dev.appomart.sweetdelivery.domain.Order
 import dev.appomart.sweetdelivery.domain.OrderStatus
@@ -12,6 +12,6 @@ interface IOrdersSource {
         status: OrderStatus,
         price: Int?,
         commentary: String?
-    ) : Boolean
+    ): Boolean
 
 }

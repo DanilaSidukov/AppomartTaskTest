@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import dev.appomart.sweetdelivery.ui.auth.AuthFragment
-import dev.appomart.sweetdelivery.ui.orders.OrdersFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.appomart.sweetdelivery.R
+import dev.appomart.sweetdelivery.ui.auth.AuthFragment
+import dev.appomart.sweetdelivery.ui.orders.OrdersFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,9 +25,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (auth.currentUser != null) {
-            supportFragmentManager.beginTransaction().add(R.id.fragment_container, OrdersFragment()).commit()
+            supportFragmentManager.beginTransaction().add(R.id.fragment_container, OrdersFragment())
+                .commit()
         } else {
-            supportFragmentManager.beginTransaction().add(R.id.fragment_container, AuthFragment()).commit()
+            supportFragmentManager.beginTransaction().add(R.id.fragment_container, AuthFragment())
+                .commit()
         }
 
     }

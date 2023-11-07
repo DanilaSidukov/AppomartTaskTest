@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class MapsRepository @Inject constructor(
     private val mapsSource: MapsSource
-): IMapsRepository {
+) : IMapsRepository {
 
     override suspend fun getMapsInfo(): List<CoordinatesInfo> = mapsSource.getMapsInfo()
 
