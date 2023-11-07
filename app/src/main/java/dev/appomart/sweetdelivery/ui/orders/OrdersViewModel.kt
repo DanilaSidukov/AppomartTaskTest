@@ -69,6 +69,16 @@ class OrdersViewModel @Inject constructor(
         }
     }
 
+    fun clearEditStatus() {
+        viewModelScope.launch {
+            _uiState.emit(
+                _uiState.value.copy(
+                    canEditStatus = null
+                )
+            )
+        }
+    }
+
     fun updateStatus(id: Int, status: OrderStatus, price: Int?, commentary: String?) {
         viewModelScope.launch {
             _uiState.emit(

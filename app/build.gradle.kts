@@ -72,13 +72,16 @@ dependencies {
     implementation ("androidx.legacy:legacy-support-v4:1.0.0")
     implementation ("androidx.room:room-ktx:$room_version")
     kapt ("androidx.room:room-compiler:$room_version")
+
     // Hilt
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
-    // Firebase BoM, Firebase Authentication library, FirebaseDatastore
+
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
+
     // Maps SDK
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
 }

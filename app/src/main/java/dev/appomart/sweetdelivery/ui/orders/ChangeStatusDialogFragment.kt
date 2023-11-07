@@ -41,6 +41,7 @@ class ChangeStatusDialogFragment(
         statusSpinner.adapter = adapter
 
         buttonCancel.setOnClickListener {
+            listener.onCancelClicked()
             dismiss()
         }
 
@@ -65,7 +66,7 @@ class ChangeStatusDialogFragment(
         with(bindingDialog) {
             if (status == OrderStatus.Closed) {
                 var isPriceSet = false
-                var isCommentarySet = false
+                var isCommentarySet: Boolean
                 editPrice.text?.toString()?.toIntOrNull()?.let {
                     isPriceSet = it.toString().toInt() > 0
                 }
@@ -86,4 +87,6 @@ interface OnStatusChangedListener {
         price: Int?,
         commentary: String?
     )
+
+    fun onCancelClicked()
 }

@@ -126,6 +126,10 @@ class OrdersFragment : Fragment(), OnChangeOrderStatusListener, OnStatusChangedL
         )
     }
 
+    override fun onCancelClicked() {
+        ordersViewModel.clearEditStatus()
+    }
+
     private fun openGoogleMaps() {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, MapsFragment())
