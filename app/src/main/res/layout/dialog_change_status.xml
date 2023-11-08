@@ -47,7 +47,7 @@
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        hint:text="Введите стоимость"
+        android:hint="@string/input_price"
         style="@style/RobotoRegular.EditTextStyle"/>
 
     <EditText
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/edit_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        hint:text="@string/input_commentary"
+        android:hint="@string/input_commentary"
         style="@style/RobotoRegular.EditTextStyle"/>
 
     <Button

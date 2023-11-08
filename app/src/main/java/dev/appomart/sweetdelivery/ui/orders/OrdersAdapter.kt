@@ -49,7 +49,6 @@ class OrdersAdapter(
                     R.string.label_order_commentary,
                     order.commentary ?: commentaryNotAssigned
                 )
-
             }
         }
 

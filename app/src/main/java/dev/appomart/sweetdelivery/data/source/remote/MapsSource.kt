@@ -17,13 +17,15 @@ class MapsSource @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun getMapsInfo(): List<CoordinatesInfo> =
         suspendCancellableCoroutine { continuation ->
-            firestore.collection(CAKES_COLLECTION_KEY).get().addOnSuccessListener { result ->
-                val documents = result.documents
-                if (documents.isNotEmpty()) {
-                    val mapInfoList = result.map { it.toCoordinatesInfo() }
-                    continuation.resume(mapInfoList, null)
+            firestore.collection(CAKES_COLLECTION_KEY)
+                .get()
+                .addOnSuccessListener { result ->
+                    val documents = result.documents
+                    if (documents.isNotEmpty()) {
+                        val mapInfoList = result.map { it.toCoordinatesInfo() }
+                        continuation.resume(mapInfoList, null)
+                    }
                 }
-            }
         }
 
     private fun QueryDocumentSnapshot.toCoordinatesInfo() = CoordinatesInfo(

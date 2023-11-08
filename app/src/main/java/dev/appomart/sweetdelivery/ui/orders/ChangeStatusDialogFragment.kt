@@ -4,7 +4,11 @@ import android.R
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import dev.appomart.sweetdelivery.databinding.DialogChangeStatusBinding
 import dev.appomart.sweetdelivery.domain.OrderStatus
@@ -16,7 +20,7 @@ class ChangeStatusDialogFragment(
     private val listener: OnStatusChangedListener,
     private val statusList: List<OrderStatus>,
     private val currentOrderId: Int
-) : DialogFragment() {
+) : DialogFragment(), OnItemSelectedListener {
 
     private lateinit var bindingDialog: DialogChangeStatusBinding
 
@@ -39,6 +43,7 @@ class ChangeStatusDialogFragment(
         adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
 
         statusSpinner.adapter = adapter
+        statusSpinner.onItemSelectedListener = this@ChangeStatusDialogFragment
 
         buttonCancel.setOnClickListener {
             listener.onCancelClicked()
@@ -60,6 +65,9 @@ class ChangeStatusDialogFragment(
                 )
             }
         }
+
+        checkShouldHidePriceAndCommentary(statusList[statusSpinner.selectedItemPosition])
+
     }
 
     private fun isEditApplicable(status: OrderStatus): Boolean {
@@ -78,6 +86,32 @@ class ChangeStatusDialogFragment(
             return true
         }
     }
+
+    private fun checkShouldHidePriceAndCommentary(currentStatus: OrderStatus) {
+        with(bindingDialog) {
+            val isStatusInProgress = currentStatus == OrderStatus.InProgress
+            editCommentary.isVisible = !isStatusInProgress
+            editPrice.isVisible = !isStatusInProgress
+        }
+    }
+
+    override fun onItemSelected(
+        adapterView: AdapterView<*>?,
+        view: View?,
+        position: Int,
+        id: Long
+    ) {
+        if (adapterView != null) {
+            checkShouldHidePriceAndCommentary(statusList[adapterView.selectedItemPosition])
+        }
+    }
+
+    override fun onNothingSelected(adapterView: AdapterView<*>?) {
+        if (adapterView != null) {
+            checkShouldHidePriceAndCommentary(statusList[adapterView.selectedItemPosition])
+        }
+    }
+
 }
 
 interface OnStatusChangedListener {

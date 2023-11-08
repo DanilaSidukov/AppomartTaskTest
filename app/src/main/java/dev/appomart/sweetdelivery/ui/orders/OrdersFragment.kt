@@ -1,5 +1,6 @@
 package dev.appomart.sweetdelivery.ui.orders
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,7 @@ import dev.appomart.sweetdelivery.ORDERS_SCREEN
 import dev.appomart.sweetdelivery.R
 import dev.appomart.sweetdelivery.databinding.FragmentOrdersBinding
 import dev.appomart.sweetdelivery.domain.OrderStatus
-import dev.appomart.sweetdelivery.ui.auth.AuthFragment
+import dev.appomart.sweetdelivery.ui.auth.AuthActivity
 import dev.appomart.sweetdelivery.ui.maps.MapsFragment
 import dev.appomart.sweetdelivery.ui.showText
 import kotlinx.coroutines.launch
@@ -89,18 +90,21 @@ class OrdersFragment : Fragment(), OnChangeOrderStatusListener, OnStatusChangedL
         rvOrders.adapter = ordersAdapter
         iconLogOut.setOnClickListener {
             auth.signOut()
-            openAuthFragment()
+            openAuthActivity()
         }
         floatingButtonMap.setOnClickListener {
             openGoogleMaps()
         }
     }
 
-    private fun openAuthFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, AuthFragment())
-            .addToBackStack(null)
-            .commit()
+    private fun openAuthActivity() {
+        startActivity(
+            Intent(
+                requireActivity(),
+                AuthActivity::class.java
+            )
+        )
+        requireActivity().finish()
     }
 
     override fun onChangeOrderStatusListener(orderId: Int, orderStatus: OrderStatus) {

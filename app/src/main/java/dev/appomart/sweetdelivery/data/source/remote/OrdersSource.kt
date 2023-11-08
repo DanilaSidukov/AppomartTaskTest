@@ -31,13 +31,15 @@ class OrdersSource @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     override suspend fun getOrders(): List<Order> = suspendCancellableCoroutine { continuation ->
 
-        firestore.collection(CAKES_COLLECTION_KEY).get().addOnSuccessListener { result ->
-            val documents = result.documents
-            if (documents.isNotEmpty()) {
-                val listOfOrders = result.map { it.toOrder() }
-                continuation.resume(listOfOrders, null)
+        firestore.collection(CAKES_COLLECTION_KEY)
+            .get()
+            .addOnSuccessListener { result ->
+                val documents = result.documents
+                if (documents.isNotEmpty()) {
+                    val listOfOrders = result.map { it.toOrder() }
+                    continuation.resume(listOfOrders, null)
+                }
             }
-        }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

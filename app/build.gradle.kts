@@ -66,13 +66,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
 
-    // Room
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    implementation ("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation ("androidx.room:room-ktx:$room_version")
-    kapt ("androidx.room:room-compiler:$room_version")
-
     // Hilt
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-android-compiler:$hilt_version")

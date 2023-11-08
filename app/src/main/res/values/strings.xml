@@ -36,4 +36,7 @@
     <string name="input_price">Введите стоимость</string>
     <string name="input_commentary">Введите комментарий</string>
     <string name="error_fill_all_fields">Ошибка: Перед завершением заказа заполните все поля</string>
+<!--    maps fragment-->
+    <string name="labels_list_of_orders_on_map">Список заказов на карте</string>
+    <string name="action_back_to_orders_list">Вернутся к списку заказов</string>
 </resources>

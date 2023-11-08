@@ -14,5 +14,5 @@ fun OrderStatus.asString(context: Context): String = when (this) {
     OrderStatus.Closed -> context.getString(R.string.label_closed)
     OrderStatus.Finished -> context.getString(R.string.label_finished)
     OrderStatus.InProgress -> context.getString(R.string.label_in_progress)
-    OrderStatus.New -> context.getString(R.string.label_new)
+    else -> context.getString(R.string.label_new)
 }

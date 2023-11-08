@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import dev.appomart.sweetdelivery.R
 import dev.appomart.sweetdelivery.databinding.FragmentMapsBinding
+import dev.appomart.sweetdelivery.ui.orders.OrdersFragment
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -46,6 +47,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        bind()
+
         viewLifecycleOwner.lifecycleScope.launch {
             mapsViewModel.coordinatesList.collect { position ->
                 if (position.isEmpty() || !this@MapsFragment::googleMap.isInitialized) return@collect
@@ -65,8 +68,15 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    private fun bind() = with(binding){
+        iconBackToOrdersList.setOnClickListener {
+            requireActivity()
+                .supportFragmentManager
+                .popBackStack()
+        }
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         this.googleMap = googleMap
-
     }
 }
